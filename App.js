@@ -1,5 +1,5 @@
 import React from "react";
-import BarChart from "./src/BarChart";
+import ChartContainer from "./src/ChartContainer";
 
 import { Navbar, Container, Row, Col, NavDropdown } from "react-bootstrap";
 
@@ -9,13 +9,13 @@ class App extends React.Component {
     this.state = {
       order: "asc",
     };
-    this.chartRef = React.createRef();
+    //this.chartRef = React.createRef();
   }
 
   sort = (order) => {
-    console.log("order is ", order);
     this.setState({ order: order });
   };
+
   render() {
     return (
       <div>
@@ -33,7 +33,7 @@ class App extends React.Component {
         <Container fluid>
           <Row>
             <Col xs={12}>
-              <BarChart ref={this.chartRef} order={this.state.order} />
+              <ChartContainer order={this.state.order} />
             </Col>
           </Row>
         </Container>
