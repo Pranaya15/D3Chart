@@ -55,8 +55,7 @@ export default class BarChart {
     let data =
       order === "desc"
         ? sortData.sort((a, b) => d3.descending(a.label, b.label))
-        : dataSet1;
-    console.log("sortedArray", data);
+        : sortData.sort((a, b) => d3.ascending(a.label, b.label));
 
     let y = d3
       .scaleLinear()
@@ -70,8 +69,6 @@ export default class BarChart {
       .range([0, WIDTH])
       .padding(0.4);
 
-    console.log("x band scale", x);
-
     // let svg = d3
     //   .select(this.barchartRef.current)
     //   .append("svg")
@@ -83,13 +80,12 @@ export default class BarChart {
     //   .attr("transform", `translate(${MARGIN.LEFT},${MARGIN.TOP})`);
 
     let xAxisCall = d3.axisBottom(x);
-    console.log("xAxisCall scale", xAxisCall);
 
     this.xAxisGroup.call(xAxisCall);
 
-    console.log("svg aftre calling x axis scale", this.svg);
-
     let yAxisCall = d3.axisLeft(y);
+    //   .tickValues(data.map((d) => d.value))
+
     this.yAxisGroup.call(yAxisCall);
 
     // this.svg
@@ -122,9 +118,7 @@ export default class BarChart {
       .attr("x", (d) => x(d.label))
       .attr("y", (d) => y(d.value))
       .attr("width", x.bandwidth)
-      .attr("height", (d) => HEIGHT - y(d.value)) ///actually we should decrease from y but decrease from here because we have changeg y -axis cordinates 0 from top to bottom
+      .attr("height", (d) => HEIGHT - y(d.value))
       .attr("fill", "green");
-
-    console.log("rects after", rects);
   }
 }

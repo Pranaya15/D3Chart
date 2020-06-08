@@ -2,13 +2,11 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   devtool: "cheap-module-source-map",
-  entry: "./index.js", // tell webpack where to start
+  entry: "./index.js",
   output: {
-    // we need to tell where to finish or what to produce
-
-    path: path.resolve(__dirname, "dist"), // from where to start
+    path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: "/dist", // web dev server doesnt recogonise path we need to add another variable called publlic path
+    publicPath: "/dist",
   },
   module: {
     rules: [
@@ -20,11 +18,17 @@ module.exports = {
         },
       },
       {
-        test: /\.html$/,
+        test: /\.(scss|sass|css)$/,
         use: [
+          { loader: "style-loader" },
+
           {
-            loader: "html-loader",
+            loader: "css-loader",
+            options: {
+              modules: true,
+            },
           },
+          { loader: "sass-loader" },
         ],
       },
     ],

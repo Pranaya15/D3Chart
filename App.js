@@ -1,6 +1,6 @@
 import React from "react";
 import ChartContainer from "./src/ChartContainer";
-
+import styles from "./src/ChartContainer.css";
 import { Navbar, Container, Row, Col, NavDropdown } from "react-bootstrap";
 
 class App extends React.Component {
@@ -9,7 +9,6 @@ class App extends React.Component {
     this.state = {
       order: "asc",
     };
-    //this.chartRef = React.createRef();
   }
 
   sort = (order) => {
@@ -30,13 +29,14 @@ class App extends React.Component {
             </NavDropdown.Item>
           </NavDropdown>
         </Navbar>
-        <Container fluid>
+
+        <div className={styles.container}>
           <Row>
-            <Col xs={12}>
+            <Col>
               <ChartContainer order={this.state.order} />
             </Col>
           </Row>
-        </Container>
+        </div>
       </div>
     );
   }

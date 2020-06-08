@@ -13,7 +13,9 @@ export default class ChartContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.state.chart.createBarChart(nextProps.order);
+    if (nextProps.order !== this.props.order) {
+      this.state.chart.createBarChart(nextProps.order);
+    }
   }
   render() {
     return <div ref={this.barChartRef}></div>;
